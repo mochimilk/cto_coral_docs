@@ -9,7 +9,7 @@ import DevelopersPage from "./Pages/DevelopersPage.tsx";
 import DesignersPage from "./Pages/DesignersPage.tsx";
 import ProductManagersPage from "./Pages/ProductManagersPage.tsx";
 import NotFound from "./Pages/NotFound.tsx"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 type AppProps = {
   isDarkMode: boolean;
@@ -28,10 +28,11 @@ const App: React.FC<AppProps> = ({ isDarkMode, toggleTheme }) => {
         {/* Main Layout */}
         <main>
           <Routes>
-          <Route path="/" element={<HomePage />} /> {/* Default route */}
-            <Route path="/developers" element={<DevelopersPage />} />
-            <Route path="/designers" element={<DesignersPage />} />
-            <Route path="/product-managers" element={<ProductManagersPage />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<HomePage />} /> {/* Default route */}
+            <Route path="/developers/*" element={<DevelopersPage />} />
+            <Route path="/designers/*" element={<DesignersPage />} />
+            <Route path="/product-managers/*" element={<ProductManagersPage />} />
             <Route path="*" element={<NotFound />} /> {/* Catch-all route for 404 */}
           </Routes>
         </main>

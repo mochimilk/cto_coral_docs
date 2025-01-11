@@ -6,46 +6,27 @@ import {
   Tooltip,
   Toolbar,
   ToolbarButton,
-  ToolbarDivider,
   Menu,
   MenuTrigger,
   MenuPopover,
   MenuList,
   MenuItem,
-  Divider,
-  Title3,
-  Subtitle2,
 } from "@fluentui/react-components";
-import {
-  MoreHorizontalRegular,
-  BranchRequestRegular,
-  CubeRegular,
-  BranchRegular,
-} from "@fluentui/react-icons";
-import {
-  PanelLeftContract,
-  PanelLeftExpand,
-  PanelRightContract,
-  PanelRightExpand,
-  Search,
-} from "../bundleIcons.tsx";
+import { MoreHorizontalRegular } from "@fluentui/react-icons";
+import { PanelLeftContract, PanelLeftExpand } from "../bundleIcons.tsx";
 import { useContentHooks } from "../Hooks/useContentHooks.tsx";
-import CodeBlock from "./CodeBlock.tsx";
+import CodeBlock from "./CodeBlockBash.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
   togglePanel?: () => void; // Optional to conditionally render left toggle
-  isRightPanelOpen: boolean;
-  toggleRightPanel?: () => void; // Optional to conditionally render right toggle
 }
 
 const ContentDevelopers: React.FC<ContentProps> = ({
   isPanelOpen,
   togglePanel,
-  isRightPanelOpen,
-  toggleRightPanel,
 }) => {
-  const { commandKey } = useContentHooks({ togglePanel, toggleRightPanel });
+  const { commandKey } = useContentHooks({ togglePanel });
   const sampleClone = `
 git clone https://github.com/<your-username>/<repository-name>.git
 cd <repository-name>
@@ -54,7 +35,7 @@ cd <repository-name>
 npm install
 yarn install
 `;
-const sampleRun = `
+  const sampleRun = `
 npm start
 yarn start
 `;
@@ -76,12 +57,11 @@ yarn start
             </Tooltip>
           )}
           <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
-            Developers
+            installation.tsx
           </Body1Strong>
         </div>
 
         <Toolbar>
-          <ToolbarButton icon={<Search />} />
           <Menu>
             <MenuTrigger>
               <ToolbarButton
@@ -98,22 +78,6 @@ yarn start
               </MenuList>
             </MenuPopover>
           </Menu>
-          <ToolbarDivider />
-          {toggleRightPanel && ( // Hide right toggle if toggleRightPanel is not provided
-            <Tooltip content={`${commandKey} + →`} relationship="label">
-              <ToolbarButton
-                icon={
-                  isRightPanelOpen ? (
-                    <PanelRightContract />
-                  ) : (
-                    <PanelRightExpand />
-                  )
-                }
-                onClick={toggleRightPanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
         </Toolbar>
       </div>
 
@@ -126,36 +90,48 @@ yarn start
       <div className="content">
         <div style={{ width: "100%", maxWidth: "728px", margin: " 0 auto" }}>
           <h1>Installation</h1>
-          <h3>1. Fork repository</h3>
-          <p>
-            Click the Fork button on the top-right corner of this repository to
-            create your copy.
-          </p>
+          <ol>
+            <li>
+              <h3>Fork repository</h3>
+            </li>
+            <p>
+              <div className="infoTile">
+                <img
+                  src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Jellyfish.png"
+                  alt="Jellyfish"
+                  width="32"
+                  height="32"
+                />
+                <p>Fork this repository to create your copy.</p>
+                <a
+                  href="https://github.com/mochimilk/cto_eden/fork"
+                  target="_blank"
+                >
+                  <Button appearance="primary">Fork from GitHub</Button>
+                </a>
+              </div>
+            </p>
 
-          <br />
-          <a href="https://github.com/mochimilk/cto_eden/fork" target="_blank">
-            <Button appearance="primary">Fork from GitHub</Button>
-          </a>
+            <li>
+              <h3>Clone the forked repository</h3>
+              <CodeBlock code={sampleClone.trim()} />
+            </li>
 
-          <h3>2. Clone the forked repository</h3>
+            <li>
+              <h3>Install dependencies</h3>
+              <p>
+                Make sure you have <a href="">Node.js</a> and npm or yarn
+                installed. Then, run:
+              </p>
+              <CodeBlock code={sampleDependencies.trim()} />
+            </li>
 
-          <CodeBlock code={sampleClone.trim()} />
-
-          <h3>3. Install dependencies</h3>
-          <p>
-            Make sure you have <a href="">Node.js</a> and npm or yarn installed.
-            Then, run:
-          </p>
-          <CodeBlock code={sampleDependencies.trim()} />
-
-
-          <h3>4. Run the development server</h3>
-          <p>
-          Start the application in development mode::
-          </p>
-          <CodeBlock code={sampleRun.trim()} />
-
-   
+            <li>
+              <h3>Run the development server</h3>
+              <p>Start the application in development mode::</p>
+              <CodeBlock code={sampleRun.trim()} />
+            </li>
+          </ol>
         </div>
       </div>
     </div>

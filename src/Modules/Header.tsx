@@ -4,6 +4,7 @@ import { Header, useHeaderHooks } from "../Hooks/useHeaderHooks.tsx";
 import {
   TabList,
   Tab,
+  TabValue,
   Menu,
   MenuTrigger,
   MenuPopover,
@@ -40,44 +41,51 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Map each tab to a route
-  const tabToRouteMap = {
-    home: "/",
-    designers: "/designers",
-    developers: "/developers",
-    productManagers: "/product-managers",
+  // Map routes to TabValues
+  const tabRoutes: { [key: string]: TabValue } = {
+    "/home": "home",
+    "/developers": "developers",
+    "/designers": "designers",
+    "/product-managers": "productManagers",
   };
 
-  const routeToTabMap = Object.entries(tabToRouteMap).reduce(
-    (acc, [tab, route]) => ({ ...acc, [route]: tab }),
-    {}
-  );
+  // Get the current tab based on the route
+  const currentTab =
+    Object.keys(tabRoutes).find((route) =>
+      location.pathname.startsWith(route)
+    ) || "/home"; // Default to "designers"
 
-  // Determine the current active tab based on the route
-  const currentTab = routeToTabMap[location.pathname] || "/";
-
-  // Handle tab selection
-  const handleTabChange = (event, data) => {
-    navigate(tabToRouteMap[data.value]);
+  const handleTabChange = (
+    _: React.SyntheticEvent,
+    data: { value: TabValue }
+  ) => {
+    const newRoute = Object.keys(tabRoutes).find(
+      (key) => tabRoutes[key] === data.value
+    );
+    if (newRoute) {
+      // Redirect "Developers" to its default nested route
+      navigate(
+        newRoute === "/developers" ? "/developers/installation" : newRoute
+      );
+    }
   };
 
   return (
     <Header
-      avatarSrc={MsftLogo} // Profile icon for businesses.
+      avatarSrc={MsftLogo} // Profile icon for businesses
       title="Microsoft" // Site title
-      subtitle="CTO Coral" // Site subtitle
-      badge="Docs" //
+      subtitle="CTO Coral" // Optional subtitle
+      badge="Docs" // Optional badge
+      value='home'
     >
-      {/* Navigation Section
-      Placeholder. You can configure it to your needs or omit entirely */}
       <div className="headerNav">
         <TabList
-          selectedValue={currentTab}
+          selectedValue={tabRoutes[currentTab]}
           onTabSelect={handleTabChange}
           aria-label="Site Navigation Tabs"
           size="small"
         >
-                    <Tab icon={<LeafOne />} value="home">
+          <Tab icon={<LeafOne />} value="home">
             Hello
           </Tab>
           <Tab icon={<Code />} value="developers">

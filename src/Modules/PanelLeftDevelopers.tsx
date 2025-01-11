@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   Body1Strong,
-  Button,
   Caption1Strong,
   Menu,
   MenuTrigger,
@@ -13,57 +12,112 @@ import {
 } from "@fluentui/react-components";
 import {
   Beaker20Regular,
-  Dismiss20Regular,
+  Beaker20Filled,
   MoreHorizontalRegular,
   PersonChat20Regular,
-  Settings20Filled,
+  PersonChat20Filled,
   Settings20Regular,
+  Settings20Filled,
 } from "@fluentui/react-icons";
 import "./css/Chat.css";
 import LeftNavItem from "../Components/LeftNavItem.tsx";
+import { NavLink } from "react-router-dom";
 
-// Reusable component for a chat history item
-const ChatHistoryItem: React.FC<{ text: string }> = ({ text }) => (
-  <LeftNavItem>{text}</LeftNavItem>
-);
+// Explicitly defines types and annotates destructured parameters to prevent TypeScript errors
+interface NavItem {
+  to: string;
+  label: string;
+  regularIcon?: React.ElementType;
+  filledIcon?: React.ElementType;
+}
 
-// Reusable component for a chat history section
-const ChatHistorySection: React.FC<{ title: string; items: string[] }> = ({
-  title,
-  items,
-}) => (
-  <div>
-    <div
-      style={{
-        padding: "0 8px 16px 8px",
-        color: "var(--colorNeutralForeground4)",
-      }}
-    >
-      <Caption1Strong>{title}</Caption1Strong>
-    </div>
+interface NavSection {
+  sectionTitle?: string | null; // Use null to omit section title
+  items: NavItem[];
+}
 
-    {items.map((item, index) => (
-      <ChatHistoryItem key={index} text={item} />
-    ))}
-    <br />
-    <br />
-  </div>
-);
+// NAVLINK NAV ITEMS
+const navSections = [
+  {
+    sectionTitle: null,
+    items: [
+      {
+        to: "/developers/installation",
+        regularIcon: Settings20Regular,
+        filledIcon: Settings20Filled,
+        label: "Installation",
+      },
+    ],
+  },
+  {
+    sectionTitle: "Core Concepts",
+    items: [
+      {
+        to: "/developers/header",
+        label: "Header",
+      },
+      {
+        to: "/developers/panels",
+        label: "Panels",
+      },
+      {
+        to: "/developers/content",
+        label: "Content",
+      },
+      {
+        to: "/developers/pages",
+        label: "Pages",
+      },
+      {
+        to: "/developers/custom-components",
+        label: "Custom Components",
+      },
+    ],
+  },
+  {
+    sectionTitle: "Advanced Configurations",
+    items: [
+      {
+        to: "/developers/page-navigation",
+        label: "Page Navigation",
+      },
+      {
+        to: "/developers/routing",
+        label: "Routing",
+      },
+      {
+        to: "/developers/themes",
+        label: "Themes",
+      },
+
+    ],
+  },
+  {
+    sectionTitle: "Explore",
+    items: [
+      {
+        to: "/developers/labs",
+        regularIcon: Beaker20Regular,
+        filledIcon: Beaker20Filled,
+        label: "Labs",
+      },
+      {
+        to: "/developers/support",
+        regularIcon: PersonChat20Regular,
+        filledIcon: PersonChat20Filled,
+        label: "Support",
+      },
+    ],
+  },
+];
+
+
+
+
+
+
 
 const PanelLeft: React.FC = () => {
-  // Chat history data
-  const chatSections = [
-    {
-      title: "Components",
-      items: ["Header", "Panels", "Content", "Pages", "Custom components"],
-    },
-
-    {
-      title: "Advanced Configurations",
-      items: ["Page Navigation", "Routing", "Themes", "Pages"],
-    },
-  ];
-
   return (
     <div className="panelLeft">
       <div className="panelHeader">
@@ -83,38 +137,77 @@ const PanelLeft: React.FC = () => {
       </div>
 
       <div className="chatHistoryContainer" style={{ height: "100%" }}>
-        <LeftNavItem icon={<Settings20Regular />}>Installation</LeftNavItem>
-        <LeftNavItem icon={<PersonChat20Regular />}>Support</LeftNavItem>
-        <LeftNavItem icon={<Beaker20Regular />}>Labs</LeftNavItem>
+        <nav>
+          {navSections.map(({ sectionTitle, items }, sectionIndex) => (
+            <div className="navSectionContainer" key={sectionIndex}>
+              {sectionTitle && (
+                <div className="navSectionTitle">
+                  <Caption1Strong>{sectionTitle}</Caption1Strong>
+                </div>
+              )}
+              {items.map(
+                (
+                  {
+                    to,
+                    regularIcon: RegularIcon,
+                    filledIcon: FilledIcon,
+                    label,
+                  }: NavItem,
+                  index: number
+                ) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    role="tab"
+                    className={({ isActive }) =>
+                      isActive ? "active-tab" : "tab"
+                    }
+                  >
+                    {({ isActive }) => (
+                      <div className="nav-item">
+                        <div className="sideNavTick" />
+                        {RegularIcon && FilledIcon ? (
+                          isActive ? (
+                            <FilledIcon />
+                          ) : (
+                            <RegularIcon />
+                          )
+                        ) : null}
+                        {label}
+                      </div>
+                    )}
+                  </NavLink>
+                )
+              )}
+            </div>
+          ))}
+        </nav>
 
-        <br />
-        <br />
-        {chatSections.map((section, index) => (
-          <ChatHistorySection
-            key={index}
-            title={section.title}
-            items={section.items}
-          />
-        ))}
+
       </div>
 
       <div
         style={{
           margin: "12px",
-          backgroundColor: "var(--colorNeutralBackground1)",
+          backgroundColor: "var(--colorNeutralBackgroundAlpha2)",
           padding: "12px",
           borderRadius: "8px",
-          // border: "1px solid var(--colorNeutralStroke2)",
           display: "flex",
           flexDirection: "column",
           gap: "8px",
         }}
       >
-        {<Beaker20Regular />}
-      <Body1Strong>Labs</Body1Strong>
-        <Body1 style={{color:'var(--colorNeutralForeground3)'}}>Help us create the best workflow for your team.</Body1>
+        <img
+          src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Woman%20Scientist%20Light%20Skin%20Tone.png"
+          alt="Woman Scientist Light Skin Tone"
+          width="32"
+          height="32"
+        />
+        <Body1Strong>Labs</Body1Strong>
+        <Body1 style={{ color: "var(--colorNeutralForeground3)" }}>
+          Help us create the best workflow for your team.
+        </Body1>
         <a href="">Learn more</a>
-
       </div>
     </div>
   );

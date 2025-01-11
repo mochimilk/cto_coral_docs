@@ -1,9 +1,14 @@
 import * as React from "react";
-import Content from "../Modules/ContentDevelopers.tsx";
+import ContentDevelopersInstallation from "../Modules/ContentDevelopers.tsx";
 import PanelRight from "../Modules/PanelRight.tsx";
 import PanelLeft from "../Modules/PanelLeftDevelopers.tsx";
-
+import ContentDevelopersSupport from "../Modules/ContentDevelopersSupport.tsx";
+import ContentDevelopersLabs from "../Modules/ContentDevelopersLabs.tsx";
 import { useAppHooks } from "../Hooks/useAppHooks.tsx";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+const DevelopersInstallation = () => <div>Designers Overview</div>;
+const DevelopersSupport = () => <div>Designers Guides</div>;
 
 const TriPanelLayout: React.FC = () => {
   const {
@@ -18,10 +23,6 @@ const TriPanelLayout: React.FC = () => {
   } = useAppHooks();
   return (
     <div className="layout" style={{ display: "flex" }}>
-
-
-
-      
       {/*📌 Below is the setup for panelLeft.
        ***To populate its contents, go to ./src/Modules/PanelLeft.tsx */}
 
@@ -39,12 +40,43 @@ const TriPanelLayout: React.FC = () => {
        ***To populate its contents, go to ./src/Modules/Content.tsx */}
 
       <div className="contentContainer" style={{ flexGrow: 1 }}>
-        <Content
-          isPanelOpen={isPanelOpen}
-          togglePanel={togglePanel} // Left toggle is active
-          isRightPanelOpen={isRightPanelOpen}
-          toggleRightPanel={toggleRightPanel} // Right toggle is active
-        />
+        <Routes>
+          {/* <Route path="/" element={<Navigate to="installation" replace />} /> */}
+          <Route
+            path="installation"
+            element={
+              <ContentDevelopersInstallation
+                isPanelOpen={isPanelOpen}
+                togglePanel={togglePanel} // Left toggle is active
+                isRightPanelOpen={isRightPanelOpen}
+                toggleRightPanel={toggleRightPanel} // Right toggle is active
+              />
+            }
+          />
+          <Route
+            path="support"
+            element={
+              <ContentDevelopersSupport
+                isPanelOpen={isPanelOpen}
+                togglePanel={togglePanel} // Left toggle is active
+                isRightPanelOpen={isRightPanelOpen}
+                toggleRightPanel={toggleRightPanel} // Right toggle is active
+              />
+            }
+          />
+
+          <Route
+            path="labs"
+            element={
+              <ContentDevelopersLabs
+                isPanelOpen={isPanelOpen}
+                togglePanel={togglePanel} // Left toggle is active
+                isRightPanelOpen={isRightPanelOpen}
+                toggleRightPanel={toggleRightPanel} // Right toggle is active
+              />
+            }
+          />
+        </Routes>
       </div>
 
       {/*📌 Below is the setup for panelRight.
