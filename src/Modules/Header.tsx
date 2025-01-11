@@ -76,7 +76,6 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
       title="Microsoft" // Site title
       subtitle="CTO Coral" // Optional subtitle
       badge="Docs" // Optional badge
-      value='home'
     >
       <div className="headerNav">
         <TabList

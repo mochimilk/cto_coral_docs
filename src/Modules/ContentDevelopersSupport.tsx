@@ -12,23 +12,11 @@ import {
   MenuPopover,
   MenuList,
   MenuItem,
-  Divider,
-  Title3,
-  Subtitle2,
-  Body1,
   Avatar,
   Caption1,
 } from "@fluentui/react-components";
+import { MoreHorizontalRegular } from "@fluentui/react-icons";
 import {
-  MoreHorizontalRegular,
-  BranchRequestRegular,
-  CubeRegular,
-  BranchRegular,
-} from "@fluentui/react-icons";
-import {
-  Code,
-  DesignIdeas,
-  Flow,
   PanelLeftContract,
   PanelLeftExpand,
   PanelRightContract,
@@ -36,7 +24,6 @@ import {
   Search,
 } from "../bundleIcons.tsx";
 import { useContentHooks } from "../Hooks/useContentHooks.tsx";
-import CodeBlock from "./CodeBlockBash.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
