@@ -9,7 +9,7 @@ import DevelopersPage from "./Pages/DevelopersPage.tsx";
 import DesignersPage from "./Pages/DesignersPage.tsx";
 import ProductManagersPage from "./Pages/ProductManagersPage.tsx";
 import NotFound from "./Pages/NotFound.tsx"
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 type AppProps = {
   isDarkMode: boolean;
@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = ({ isDarkMode, toggleTheme }) => {
 
   return (
     <div className="app-container">
-      <Router>
+      <Router >
         {/* Move Header into App */}
         <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
 
