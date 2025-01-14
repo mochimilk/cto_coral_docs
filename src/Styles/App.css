@@ -58,3 +58,7 @@ code.span {
 }
 
 
+ /* svg > path {
+    fill: var(--colorNeutralForeground2);
+ } */
+

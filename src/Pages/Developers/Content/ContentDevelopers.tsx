@@ -87,7 +87,7 @@ yarn start
                 />
                 <p>Fork Coral from GitHub.</p>
                 <a
-                  href="https://github.com/mochimilk/cto_eden/fork"
+                  href="https://github.com/mochimilk/cto_coral/fork"
                   target="_blank"
                 >
                   <Button appearance="primary">Fork</Button>
@@ -104,11 +104,11 @@ yarn start
               <h3>Install dependencies</h3>
               <p>
                 Make sure you have
-           
+           &nbsp;
                   <a href="https://nodejs.org/en" target="_blank">
                     Node.js
                   </a>
-           
+                  &nbsp;
       
                 and npm or yarn installed. Then, run:
               </p>

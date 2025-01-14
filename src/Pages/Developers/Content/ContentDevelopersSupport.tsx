@@ -3,28 +3,20 @@ import "../../../Styles/App.css";
 import {
   Body1Strong,
   Button,
-  Tooltip,
   Toolbar,
   ToolbarButton,
-  ToolbarDivider,
-  Menu,
-  MenuTrigger,
-  MenuPopover,
-  MenuList,
-  MenuItem,
   Avatar,
   Caption1,
 } from "@fluentui/react-components";
-import { MoreHorizontalRegular } from "@fluentui/react-icons";
 import {
-  PanelLeftContract,
-  PanelLeftExpand,
-  PanelRightContract,
-  PanelRightExpand,
-  Search,
+Flow20Regular
+} from "@fluentui/react-icons";
+import {
+  Flow,
+  Link,
 } from "../../../Imports/bundleIcons.tsx";
 import { useContentHooks } from "../../../Hooks/useContentHooks.tsx";
-
+import ContentToolbar from "../../../Hooks/useContentToolbarHooks.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
@@ -58,58 +50,20 @@ yarn start
       {/*📌 Below is the setup for the content toolbar.
        ***You may remove this if your app doesn't need a toolbar. */}
 
-      <div className="panelHeader">
-        <div className="headerTitleGroup">
-          {togglePanel && ( // Hide left toggle if togglePanel is not provided
-            <Tooltip content={`${commandKey} + ←`} relationship="label">
-              <Button
-                icon={isPanelOpen ? <PanelLeftContract /> : <PanelLeftExpand />}
-                onClick={togglePanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
-          <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
-            Support
-          </Body1Strong>
-        </div>
+      <ContentToolbar
+        panelConfig="left" // If your page is only using one panel, define it here with "left" or "right". Removing this defaults to both.
+        isPanelOpen={isPanelOpen}
+        togglePanel={togglePanel}
+        isRightPanelOpen={isRightPanelOpen}
+        toggleRightPanel={toggleRightPanel}
+        commandKey={commandKey}
+      >
+        <Toolbar></Toolbar>
 
         <Toolbar>
-          <ToolbarButton icon={<Search />} />
-          <Menu>
-            <MenuTrigger>
-              <ToolbarButton
-                aria-label="More"
-                icon={<MoreHorizontalRegular />}
-              />
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList>
-                <MenuItem>New </MenuItem>
-                <MenuItem>New Window</MenuItem>
-                <MenuItem disabled>Open File</MenuItem>
-                <MenuItem>Open Folder</MenuItem>
-              </MenuList>
-            </MenuPopover>
-          </Menu>
-          <ToolbarDivider />
-          {toggleRightPanel && ( // Hide right toggle if toggleRightPanel is not provided
-            <Tooltip content={`${commandKey} + →`} relationship="label">
-              <ToolbarButton
-                icon={
-                  isRightPanelOpen ? (
-                    <PanelRightContract />
-                  ) : (
-                    <PanelRightExpand />
-                  )
-                }
-                onClick={toggleRightPanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
+          <ToolbarButton icon={<Link />}></ToolbarButton>
         </Toolbar>
-      </div>
+      </ContentToolbar>
 
       {/*📌 Below is the setup for Content.
        ***You can import just about anything into className"content" and it should show up in the content panel
@@ -122,10 +76,9 @@ yarn start
           <h1>Support</h1>
 
           <p>
-            We are currently in Alpha stages of our build. If you have any
-            questions, please defer to the team below to get assistance.
-            <br />
-            <br />
+            
+          
+          
             <div
               className="infoTile"
               style={{
@@ -134,28 +87,40 @@ yarn start
                 gap: "24px",
               }}
             >
-              <img
+              {/* <div className="ghIssuesSvg">
+                <img
+                  width="24"
+                  height="24"
+                  src={require("../../../Imports/ghsvg.svg").default}
+                  alt="mySvgImage"
+                  style={{stroke:'red'}}
+                />
+              </div> */}
+
+              {/* <img
                 src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Folded%20Hands.png"
                 alt="Folded Hands"
                 width="32"
                 height="32"
-              />
-
-
-
+              /> */}
+<Flow20Regular/>
               <p>
                 {" "}
-                <h4 style={{ margin: "0 0 2px 0" }}>We're on Teams!</h4>Join our
-                channel to get quick feedback and insights from community
-                members.
+                <h4 style={{ margin: "0 0 2px 0" }}>Submit Issues on GitHub</h4>Issues are
+                used to track todos, bugs, feature requests, and more.
               </p>
               <a href="" target="_blank">
-                <Button>Join Channel</Button>
+                <a href="https://github.com/mochimilk/cto_coral/issues">
+                  <Button>Submit an Issue</Button>
+                </a>
               </a>
             </div>
-            If You want to help us build the best workflow for our team, go to
-            Labs.
+
+            If you have any further
+            questions, let us know.
           </p>
+
+       
 
           <h3>Designers</h3>
 

@@ -22,20 +22,31 @@ import {
   Avatar,
 } from "@fluentui/react-components";
 import { MoreHorizontalRegular } from "@fluentui/react-icons";
-import { PanelLeftContract, PanelLeftExpand } from "../../../Imports/bundleIcons.tsx";
+import {
+  Link,
+  Open,
+  OrganizationHorizontal,
+  PanelLeftContract,
+  PanelLeftExpand,
+} from "../../../Imports/bundleIcons.tsx";
 import { useContentHooks } from "../../../Hooks/useContentHooks.tsx";
 import CodeBlock from "../../../Components/CodeBlock/CodeBlock.tsx";
+import ContentToolbar from "../../../Hooks/useContentToolbarHooks.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
   togglePanel?: () => void; // Optional to conditionally render left toggle
+  isRightPanelOpen: boolean;
+  toggleRightPanel?: () => void; // Optional to conditionally render left toggle
 }
 
 const ContentDevelopers: React.FC<ContentProps> = ({
   isPanelOpen,
   togglePanel,
+  isRightPanelOpen,
+  toggleRightPanel,
 }) => {
-  const { commandKey } = useContentHooks({ togglePanel });
+  const { commandKey } = useContentHooks({ togglePanel, toggleRightPanel });
   const sampleRouting = `
 import { HashRouter as Router, Navigate } from "react-router-dom";
 // or
@@ -89,41 +100,20 @@ import { BrowserRouter as Router, Navigate } from "react-router-dom";
       {/*📌 Below is the setup for the content toolbar.
        ***You may remove this if your app doesn't need a toolbar. */}
 
-      <div className="panelHeader">
-        <div className="headerTitleGroup">
-          {togglePanel && ( // Hide left toggle if togglePanel is not provided
-            <Tooltip content={`${commandKey} + ←`} relationship="label">
-              <Button
-                icon={isPanelOpen ? <PanelLeftContract /> : <PanelLeftExpand />}
-                onClick={togglePanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
-          <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
-            Routing
-          </Body1Strong>
-        </div>
+      <ContentToolbar
+        panelConfig="left" // If your page is only using one panel, define it here with "left" or "right". Removing this defaults to both.
+        isPanelOpen={isPanelOpen}
+        togglePanel={togglePanel}
+        isRightPanelOpen={isRightPanelOpen}
+        toggleRightPanel={toggleRightPanel}
+        commandKey={commandKey}
+      >
+        <Toolbar></Toolbar>
 
         <Toolbar>
-          <Menu>
-            <MenuTrigger>
-              <ToolbarButton
-                aria-label="More"
-                icon={<MoreHorizontalRegular />}
-              />
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList>
-                <MenuItem>New </MenuItem>
-                <MenuItem>New Window</MenuItem>
-                <MenuItem disabled>Open File</MenuItem>
-                <MenuItem>Open Folder</MenuItem>
-              </MenuList>
-            </MenuPopover>
-          </Menu>
+          <ToolbarButton icon={<Link />}></ToolbarButton>
         </Toolbar>
-      </div>
+      </ContentToolbar>
 
       {/*📌 Below is the setup for Content.
        ***You can import just about anything into className"content" and it should show up in the content panel
@@ -147,15 +137,13 @@ import { BrowserRouter as Router, Navigate } from "react-router-dom";
             <code className="span">BrowserRouter</code> in your{" "}
             <code className="span">App.tsx</code> imports:
           </p>
-          <CodeBlock code={sampleRouting.trim()} fileName="App" language="tsx" />
+          <CodeBlock
+            code={sampleRouting.trim()}
+            fileName="App"
+            language="tsx"
+          />
 
-          <h3>Why routing?</h3>
-          <p>
-            Coral is designed with scalability in mind. All modular components
-            that are reused throught each app are given it's own Typescript
-            file, allowing developers to use them dynamically to their specific
-            needs.
-          </p>
+   
 
           <br />
           <div className="infoTile">

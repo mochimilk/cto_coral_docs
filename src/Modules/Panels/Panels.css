@@ -112,16 +112,17 @@
 
 
 
-.panelHeader {
+.panelToolbar {
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 0 8px;
+  padding: 0 16px;
   min-height: 64px;
   justify-content: space-between;
   box-sizing: border-box;
   backdrop-filter: saturate(180%) blur(16px);
   transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
 }
 
 .buttonGroup {
@@ -133,6 +134,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+ width: 100%;
 }
 
 .infoTile {

@@ -30,6 +30,7 @@ import {
   Code,
   DesignIdeas,
   Flow,
+  Link,
   PanelLeftContract,
   PanelLeftExpand,
   PanelRightContract,
@@ -38,6 +39,7 @@ import {
 } from "../../../Imports/bundleIcons.tsx";
 import { useContentHooks } from "../../../Hooks/useContentHooks.tsx";
 import CodeBlock from "../../../Components/CodeBlock/CodeBlock.tsx";
+import ContentToolbar from "../../../Hooks/useContentToolbarHooks.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
@@ -71,58 +73,20 @@ yarn start
       {/*📌 Below is the setup for the content toolbar.
        ***You may remove this if your app doesn't need a toolbar. */}
 
-      <div className="panelHeader">
-        <div className="headerTitleGroup">
-          {togglePanel && ( // Hide left toggle if togglePanel is not provided
-            <Tooltip content={`${commandKey} + ←`} relationship="label">
-              <Button
-                icon={isPanelOpen ? <PanelLeftContract /> : <PanelLeftExpand />}
-                onClick={togglePanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
-          <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
-            Labs
-          </Body1Strong>
-        </div>
+<ContentToolbar
+        panelConfig="left" // If your page is only using one panel, define it here with "left" or "right". Removing this defaults to both.
+        isPanelOpen={isPanelOpen}
+        togglePanel={togglePanel}
+        isRightPanelOpen={isRightPanelOpen}
+        toggleRightPanel={toggleRightPanel}
+        commandKey={commandKey}
+      >
+        <Toolbar></Toolbar>
 
         <Toolbar>
-          <ToolbarButton icon={<Search />} />
-          <Menu>
-            <MenuTrigger>
-              <ToolbarButton
-                aria-label="More"
-                icon={<MoreHorizontalRegular />}
-              />
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList>
-                <MenuItem>New </MenuItem>
-                <MenuItem>New Window</MenuItem>
-                <MenuItem disabled>Open File</MenuItem>
-                <MenuItem>Open Folder</MenuItem>
-              </MenuList>
-            </MenuPopover>
-          </Menu>
-          <ToolbarDivider />
-          {toggleRightPanel && ( // Hide right toggle if toggleRightPanel is not provided
-            <Tooltip content={`${commandKey} + →`} relationship="label">
-              <ToolbarButton
-                icon={
-                  isRightPanelOpen ? (
-                    <PanelRightContract />
-                  ) : (
-                    <PanelRightExpand />
-                  )
-                }
-                onClick={toggleRightPanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
+          <ToolbarButton icon={<Link />}></ToolbarButton>
         </Toolbar>
-      </div>
+      </ContentToolbar>
 
       {/*📌 Below is the setup for Content.
        ***You can import just about anything into className"content" and it should show up in the content panel
@@ -149,11 +113,7 @@ yarn start
           </div>
 
           <div>
-            <p style={{ fontSize: "24px", marginBottom: "32px" }}>
-              Labs aims to improve our developement process by encouraging
-              developers on our team to contribute back to CTO Coral through
-              branches and feedback.
-            </p>
+        
             <p>We are currently looking to improve on the following:</p>
 
             <ul>
@@ -228,8 +188,7 @@ yarn start
           </a>
           <br />
           <br />
-          <Divider />
-          <h3>Feedback loop</h3>
+    
         </div>
       </div>
     </div>

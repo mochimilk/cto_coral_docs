@@ -142,7 +142,7 @@ const ContentDevelopers: React.FC<ContentProps> = ({
         <div style={{ width: "100%", maxWidth: "728px", margin: "0 auto" }}>
           <h1>Content</h1>
           <Tag shape="circular" appearance="outline" icon={<FolderOpen />}>
-            src/Modules/Content/Content.tsx
+            src/Components/Content/Content.tsx
           </Tag>
 
           <br />

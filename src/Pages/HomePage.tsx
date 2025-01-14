@@ -17,10 +17,18 @@ function getDate() {
 const RightPanelLayout: React.FC = () => {
   const navigate = useNavigate();
 
-const handleClick = () => {
+const handleDevClick = () => {
   // Perform some action
   navigate('/developers/installation');
 };
+const handleDesClick = () => {
+  // Perform some action
+  navigate('/designers');
+};
+// const handlePMClick = () => {
+//   // Perform some action
+//   navigate('/product-managers');
+// };
   const [currentDate, setCurrentDate] = useState(getDate());
   return (
     <div className="layout" style={{ display: "flex" }}>
@@ -32,7 +40,7 @@ const handleClick = () => {
           <Title3>What's your role?</Title3>
           <div className="promptButtonContainer">
   
-            <div className="promptButton" onClick={handleClick}>
+            <div className="promptButton" onClick={handleDevClick}>
               {/* <Code /> */}
               <img
                 src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Woman%20Technologist%20Medium-Dark%20Skin%20Tone.png"
@@ -47,7 +55,7 @@ const handleClick = () => {
               </Body1>
             </div>
 
-            <div className="promptButton">
+            <div className="promptButton" onClick={handleDesClick}>
               {/* <DesignIdeas /> */}
               <img
                 src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Artist%20Medium-Light%20Skin%20Tone.png"
@@ -62,8 +70,8 @@ const handleClick = () => {
               </Body1>
             </div>
 
-            <div className="promptButton">
-              {/* <Flow /> */}
+            {/* <div className="promptButton" >
+              
               <img
                 src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People%20with%20professions/Man%20Office%20Worker%20Medium%20Skin%20Tone.png"
                 alt="Man Office Worker Medium Skin Tone"
@@ -75,7 +83,7 @@ const handleClick = () => {
                 {" "}
                 Understanding Coral as a product
               </Body1>
-            </div>
+            </div> */}
           </div>
           <Body1 style={{ color: "var(--colorNeutralForeground4)" }}>
             With love, from Seattle © Microsoft {currentDate}

@@ -46,11 +46,11 @@ const tabConfigs = [
     value: "designers",
     label: "Designers",
   },
-  {
-    icon: <Flow />,
-    value: "productManagers",
-    label: "Product Managers",
-  },
+  // {
+  //   icon: <Flow />,
+  //   value: "productManagers",
+  //   label: "Product Managers",
+  // },
 ];
 
 

@@ -22,7 +22,7 @@ import {
   Code20Regular,
   Code20Filled,
 } from "@fluentui/react-icons";
-import "../../Modules/Panels/Chat.css";
+import "../HomePage.css";
 import { NavLink } from "react-router-dom";
 
 // Explicitly defines types and annotates destructured parameters to prevent TypeScript errors
@@ -122,7 +122,7 @@ const navSections = [
 const PanelLeft: React.FC = () => {
   return (
     <div className="panelLeft">
-      <div className="panelHeader">
+      <div className="panelToolbar">
         <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
           Navigation
         </Body1Strong>

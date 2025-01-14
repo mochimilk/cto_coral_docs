@@ -149,7 +149,7 @@ const ContentDevelopers: React.FC<ContentProps> = ({
         <div style={{ width: "100%", maxWidth: "728px", margin: "0 auto" }}>
           <h1>Panels</h1>
           <Tag shape="circular" appearance="outline" icon={<FolderOpen />}>
-            src/Modules/Panels
+            src/Components/Panels
           </Tag>
 
           <h3> Enabling and disabling panels</h3>

@@ -82,67 +82,19 @@ import {
 
 const sampleHeaderTree = `
 src/
-├── assets/                     # Static assets like images, fonts, etc.
-│   ├── images/
-│   │   ├── logo.png
-│   │   ├── background.jpg
-│   │   └── icons/
-│   │       └── close-icon.svg
-│   └── fonts/
-│       ├── OpenSans-Regular.ttf
-│       └── OpenSans-Bold.ttf
-│
-├── components/                 # Reusable React components
+├── Components/
+│   ├── Content/
 │   ├── Header/
-│   │   ├── Header.tsx
-│   │   ├── Header.test.tsx
-│   │   └── Header.css
-│   ├── Footer/
-│   │   ├── Footer.tsx
-│   │   ├── Footer.test.tsx
-│   │   └── Footer.css
-│   ├── Overlay/
-│   │   ├── Overlay.tsx
-│   │   ├── Overlay.test.tsx
-│   │   └── Overlay.css
-│   ├── CodeBlock/
-│   │   ├── CodeBlock.tsx
-│   │   ├── CodeBlock.test.tsx
-│   │   └── prism-material-oceanic.css
-│   └── Button.tsx
+│   │   ├── Header.css/
+│   │   └── Header.tsx/         # Here
+│   └── Panels/
 │
-├── hooks/                      # Custom React hooks
-│   ├── useContentHooks.ts
-│   └── useWindowDimensions.ts
-│
-├── pages/                      # Page-level components (routes)
-│   ├── HomePage/
-│   │   ├── HomePage.tsx
-│   │   ├── HomePage.test.tsx
-│   │   └── HomePage.css
-│   ├── AboutPage/
-│   │   ├── AboutPage.tsx
-│   │   ├── AboutPage.test.tsx
-│   │   └── AboutPage.css
-│   └── NotFoundPage/
-│       ├── NotFoundPage.tsx
-│       └── NotFoundPage.css
-│
-├── styles/                     # Global styles and CSS variables
-│   ├── index.css
-│   └── theme.css
-│
-├── utils/                      # Utility functions and helpers
-│   ├── formatDate.ts
-│   ├── debounce.ts
-│   └── api.ts
-│
-├── App.tsx                     # Main app component
-├── index.tsx                   # React entry point
-├── react-app-env.d.ts          # TypeScript environment declarations
-├── reportWebVitals.ts          # Performance monitoring
-└── setupTests.ts               # Jest setup for testing
-
+├── Hooks/
+├── Imports/
+├── Pages/
+├── App.tsx
+├── declarations.d.ts
+└── index.tsx
 `;
 
 interface ContentProps {
@@ -182,10 +134,15 @@ const ContentDevelopers: React.FC<ContentProps> = ({
           >
             Find in tree
           </ToolbarButton>
-          <ToolbarButton icon={<Open />}>Open in GitHub</ToolbarButton>
+          <a
+            href="https://github.com/mochimilk/cto_coral/blob/master/src/Components/Header/Header.tsx"
+            target="_blank"
+          ><ToolbarButton icon={<Open />}>Open in GitHub</ToolbarButton></a>
+          
         </Toolbar>
 
         <Toolbar>
+
           <ToolbarButton icon={<Link />}></ToolbarButton>
         </Toolbar>
       </ContentToolbar>
@@ -242,7 +199,7 @@ const ContentDevelopers: React.FC<ContentProps> = ({
               </Header>
             </div>
           </div>
-<br/>
+          <br />
           <p>
             {" "}
             The <code className="span">Header</code> component wraps the primary
@@ -283,8 +240,8 @@ const ContentDevelopers: React.FC<ContentProps> = ({
 
           <h3>Header Navigation and Tools</h3>
 
-                    {/* Example */}
-                    <div
+          {/* Example */}
+          <div
             style={{
               padding: "48px",
               backgroundColor: "var(--colorNeutralBackground4)",
@@ -304,14 +261,11 @@ const ContentDevelopers: React.FC<ContentProps> = ({
                 title="Microsoft"
                 subtitle="CKM"
                 badge="v3"
-
               >
                 <div className="headerNav">
                   <TabList>
                     <Tab value="tab1">Home</Tab>
                     <Tab value="tab2">Dashboard</Tab>
-                
-         
                   </TabList>
                 </div>
 

@@ -6,7 +6,7 @@ const PanelRight: React.FC = () => {
   return (
     <div className="panelRight">
       {/* PanelHeader */}
-      <div className="panelHeader">
+      <div className="panelToolbar">
         <div className="headerTitleGroup">
           <Sparkle20Filled />
           <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
