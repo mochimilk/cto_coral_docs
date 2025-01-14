@@ -4,6 +4,7 @@ import {
   Subtitle2,
   Tag,
 } from "@fluentui/react-components";
+import { Link } from "react-router-dom";
 
 // Header Hooks
 interface HeaderHooksProps {
@@ -59,11 +60,13 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header>
       {/* Title Section */}
+      <Link to="/home" style={{ textDecoration: "none", color: "inherit" }}>
       <div className="headerTitle">
         <Avatar
           image={{ src: avatarSrc }}
           shape="square"
-          color="transparent"
+          color= {null}
+        
         />
         <div className="headerTitleText">
         <Subtitle2 style={{ whiteSpace: "nowrap" }}>
@@ -71,13 +74,14 @@ export const Header: React.FC<HeaderProps> = ({
           {subtitle && <span style={{ fontWeight: 400 }}> | {subtitle}</span>}
         </Subtitle2>
         {badge && (
-          <Tag size="small" style={{ marginTop: 4 }}>
+          <Tag size="small" style={{ marginTop: 4, marginLeft: '6px' }}>
             {badge}
           </Tag>
         )}
         </div>
 
       </div>
+      </Link>
 
       {/* Dynamic Content */}
       {children}

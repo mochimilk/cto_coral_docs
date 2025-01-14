@@ -1,45 +1,59 @@
 import * as React from "react";
-import { Body1, Tag } from "@fluentui/react-components";
-import { useAppHooks } from "./Hooks/useAppHooks.tsx";
-import Header from "./Modules/Header.tsx"; // Import Header
-import "./App.css";
-import "./Modules/css/Panels.css";
+import { useEffect } from "react";
+import Header from "./Components/Header/Header.tsx"; // Import Header
+import "./Styles/App.css";
+import "./Modules/Panels/Panels.css";
+import "./Modules/Content/Content.css"
 import HomePage from "./Pages/HomePage.tsx";
-import DevelopersPage from "./Pages/DevelopersPage.tsx";
+import DevelopersPage from "./Pages/Developers/DevelopersPage.tsx";
 import DesignersPage from "./Pages/DesignersPage.tsx";
 import ProductManagersPage from "./Pages/ProductManagersPage.tsx";
-import NotFound from "./Pages/NotFound.tsx"
-import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import NotFound from "./Pages/NotFound.tsx";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 type AppProps = {
-  isDarkMode: boolean;
-  toggleTheme: () => void;
+  isDarkMode: boolean; // Prop to control dark mode
+  toggleTheme: () => void; // Function to toggle dark mode
 };
 
 const App: React.FC<AppProps> = ({ isDarkMode, toggleTheme }) => {
-  const { showHotkeyOverlay, modifierKey } = useAppHooks();
+  // const { showHotkeyOverlay, modifierKey } = useAppHooks();
+
+  // Apply or remove the "dark-mode" class on the body element based on isDarkMode
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [isDarkMode]);
 
   return (
     <div className="app-container">
-      <Router >
-        {/* Move Header into App */}
+      <Router>
+      
         <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
 
         {/* Main Layout */}
         <main>
           <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<HomePage />} /> {/* Default route */}
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<HomePage />} /> {/* Default route */}
             <Route path="/developers/*" element={<DevelopersPage />} />
             <Route path="/designers/*" element={<DesignersPage />} />
             <Route path="/product-managers/*" element={<ProductManagersPage />} />
-            <Route path="*" element={<NotFound />} /> {/* Catch-all route for 404 */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </Router>
 
       {/* Hotkey Overlay */}
-      {showHotkeyOverlay && (
+      {/* {showHotkeyOverlay && (
         <div className="hotkey-overlay">
           <Body1>System</Body1>
           <div>
@@ -58,7 +72,7 @@ const App: React.FC<AppProps> = ({ isDarkMode, toggleTheme }) => {
             <Tag appearance="outline">→</Tag> : Right panel
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

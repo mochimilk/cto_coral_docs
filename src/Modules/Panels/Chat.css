@@ -1,4 +1,4 @@
-.chatContainer {
+.homeLayout {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -12,7 +12,7 @@
   }
 }
 
-.chatField {
+.homeContainer {
   display: flex;
   flex: 1;
   width: 100%;

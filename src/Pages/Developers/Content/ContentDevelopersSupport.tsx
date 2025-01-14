@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../../../Styles/App.css";
 import {
   Body1Strong,
   Button,
@@ -22,8 +22,9 @@ import {
   PanelRightContract,
   PanelRightExpand,
   Search,
-} from "../bundleIcons.tsx";
-import { useContentHooks } from "../Hooks/useContentHooks.tsx";
+} from "../../../Imports/bundleIcons.tsx";
+import { useContentHooks } from "../../../Hooks/useContentHooks.tsx";
+
 
 interface ContentProps {
   isPanelOpen: boolean;
@@ -139,6 +140,8 @@ yarn start
                 width="32"
                 height="32"
               />
+
+
 
               <p>
                 {" "}

@@ -1,10 +1,7 @@
 import * as React from "react";
-import Content from "../Modules/Content.tsx";
 import {
   Button,
   Subtitle1,
-  Subtitle2,
-  Title3,
 } from "@fluentui/react-components";
 
 const NotFound: React.FC = () => {

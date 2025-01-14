@@ -12,17 +12,6 @@ export const useAppHooks = () => {
   const [rightPanelWidth, setRightPanelWidth] = useState(500);
   const [isResizingRight, setIsResizingRight] = useState(false);
 
-  // State for Hotkey Overlay
-  const [showHotkeyOverlay, setShowHotkeyOverlay] = useState(false);
-
-  // Determine the OS modifier key
-  const [modifierKey, setModifierKey] = useState("Ctrl");
-
-  useEffect(() => {
-    const isMac = navigator.platform.toLowerCase().includes("mac");
-    setModifierKey(isMac ? "⌘" : "Ctrl");
-  }, []);
-
   // Left Panel Toggle
   const togglePanel = () => setIsPanelOpen(!isPanelOpen);
 
@@ -84,29 +73,6 @@ export const useAppHooks = () => {
     };
   }, [isResizingLeft, isResizingRight]);
 
-  // Hotkey Overlay Handlers
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Control" || event.key === "Meta") {
-      setShowHotkeyOverlay(true);
-    }
-  };
-
-  const handleKeyUp = (event: KeyboardEvent) => {
-    if (event.key === "Control" || event.key === "Meta") {
-      setShowHotkeyOverlay(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, []);
-
   return {
     isPanelOpen,
     panelWidth,
@@ -116,7 +82,5 @@ export const useAppHooks = () => {
     rightPanelWidth,
     toggleRightPanel,
     handleMouseDownRight,
-    showHotkeyOverlay,
-    modifierKey,
   };
 };

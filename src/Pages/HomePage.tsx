@@ -27,8 +27,8 @@ const handleClick = () => {
       {/*📌 Below is the setup for Content.
        ***To populate its contents, go to ./src/Modules/Content.tsx */}
 
-      <div className="chatContainer">
-        <div className="chatField">
+      <div className="homeLayout">
+        <div className="homeContainer">
           <Title3>What's your role?</Title3>
           <div className="promptButtonContainer">
   
@@ -43,7 +43,7 @@ const handleClick = () => {
               <Body1Strong>Developer</Body1Strong>
               <Body1 style={{ color: "var(--colorNeutralForeground4" }}>
             
-                Help me find a document from last week.
+                Quick install, documentation, and guides
               </Body1>
             </div>
 
@@ -58,7 +58,7 @@ const handleClick = () => {
               <Body1Strong>Designer</Body1Strong>
               <Body1 style={{ color: "var(--colorNeutralForeground4" }}>
                 {" "}
-                Help me find a document from last week.
+                Figma libraries, using Coral, <br/>and Fluent integration
               </Body1>
             </div>
 
@@ -73,7 +73,7 @@ const handleClick = () => {
               <Body1Strong>Product Manager</Body1Strong>
               <Body1 style={{ color: "var(--colorNeutralForeground4" }}>
                 {" "}
-                Help me find a document from last week.
+                Understanding Coral as a product
               </Body1>
             </div>
           </div>

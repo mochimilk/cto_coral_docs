@@ -32,8 +32,26 @@ import {
   DesignIdeasFilled,
   DesignIdeasRegular,
   bundleIcon,
+  FolderOpenFilled,
+  FolderOpenRegular,
+  OpenFilled,
+  OpenRegular,
+  TreeDeciduousFilled,
+  TreeDeciduousRegular,
+  TreeEvergreenFilled,
+  TreeEvergreenRegular,
+  LinkFilled,
+  LinkRegular,
+  OrganizationHorizontalFilled,
+  OrganizationHorizontalRegular
 } from "@fluentui/react-icons";
 
+export const Link = bundleIcon(LinkFilled, LinkRegular);
+export const OrganizationHorizontal = bundleIcon(OrganizationHorizontalFilled, OrganizationHorizontalRegular);
+export const TreeDeciduous = bundleIcon(TreeDeciduousFilled, TreeDeciduousRegular);
+export const TreeEvergreen = bundleIcon(TreeEvergreenFilled, TreeEvergreenRegular);
+export const FolderOpen = bundleIcon(FolderOpenFilled, FolderOpenRegular);
+export const Open = bundleIcon(OpenFilled, OpenRegular);
 export const ArrowExit = bundleIcon(ArrowExitFilled, ArrowExitRegular);
 export const Code = bundleIcon(CodeFilled, CodeRegular);
 export const DesignIdeas = bundleIcon(DesignIdeasFilled, DesignIdeasRegular);

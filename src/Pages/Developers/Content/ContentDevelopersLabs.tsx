@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../../../Styles/App.css";
 import {
   Body1Strong,
   Button,
@@ -35,9 +35,9 @@ import {
   PanelRightContract,
   PanelRightExpand,
   Search,
-} from "../bundleIcons.tsx";
-import { useContentHooks } from "../Hooks/useContentHooks.tsx";
-import CodeBlock from "./CodeBlockBash.tsx";
+} from "../../../Imports/bundleIcons.tsx";
+import { useContentHooks } from "../../../Hooks/useContentHooks.tsx";
+import CodeBlock from "../../../Components/CodeBlock/CodeBlock.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
@@ -141,16 +141,13 @@ yarn start
               width="32"
               height="32"
             />
-       
             <p>
-
-              This page is dedicated to helping develop CTO Coral. If you
-              are here to build a new app or accelerator, refer to&nbsp; 
+              This page is dedicated to helping develop CTO Coral. If you are
+              here to build a new app or accelerator, refer to&nbsp;
               <a href="/developers/installation">installation</a>.
-              
             </p>
-           
           </div>
+
           <div>
             <p style={{ fontSize: "24px", marginBottom: "32px" }}>
               Labs aims to improve our developement process by encouraging

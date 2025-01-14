@@ -1,42 +1,47 @@
 import React from "react";
-import "../App.css";
+import "../../../Styles/App.css";
 import {
-  Body1Strong,
   Button,
-  Tooltip,
+
   Toolbar,
   ToolbarButton,
-  Menu,
-  MenuTrigger,
-  MenuPopover,
-  MenuList,
-  MenuItem,
+  Tooltip,
 } from "@fluentui/react-components";
-import { MoreHorizontalRegular } from "@fluentui/react-icons";
-import { PanelLeftContract, PanelLeftExpand } from "../bundleIcons.tsx";
-import { useContentHooks } from "../Hooks/useContentHooks.tsx";
-import CodeBlock from "./CodeBlockBash.tsx";
+import { Link } from "../../../Imports/bundleIcons.tsx";
+import { useContentHooks } from "../../../Hooks/useContentHooks.tsx";
+import CodeBlock from "../../../Components/CodeBlock/CodeBlock.tsx";
+import ContentToolbar from "../../../Hooks/useContentToolbarHooks.tsx";
 
 interface ContentProps {
   isPanelOpen: boolean;
   togglePanel?: () => void; // Optional to conditionally render left toggle
+  isRightPanelOpen: boolean;
+  toggleRightPanel?: () => void; // Optional to conditionally render left toggle
 }
+
+
 
 const ContentDevelopers: React.FC<ContentProps> = ({
   isPanelOpen,
   togglePanel,
+  isRightPanelOpen,
+  toggleRightPanel,
 }) => {
-  const { commandKey } = useContentHooks({ togglePanel });
+  const { commandKey } = useContentHooks({ togglePanel, toggleRightPanel });
+
+  // Sample Code
   const sampleClone = `
 git clone https://github.com/<your-username>/<repository-name>.git
 cd <repository-name>
 `;
   const sampleDependencies = `
 npm install
+# or
 yarn install
 `;
   const sampleRun = `
 npm start
+# or
 yarn start
 `;
 
@@ -45,41 +50,19 @@ yarn start
       {/*📌 Below is the setup for the content toolbar.
        ***You may remove this if your app doesn't need a toolbar. */}
 
-      <div className="panelHeader">
-        <div className="headerTitleGroup">
-          {togglePanel && ( // Hide left toggle if togglePanel is not provided
-            <Tooltip content={`${commandKey} + ←`} relationship="label">
-              <Button
-                icon={isPanelOpen ? <PanelLeftContract /> : <PanelLeftExpand />}
-                onClick={togglePanel}
-                appearance="subtle"
-              />
-            </Tooltip>
-          )}
-          <Body1Strong style={{ color: "var(--colorNeutralForeground2)" }}>
-            installation.tsx
-          </Body1Strong>
-        </div>
-
+      <ContentToolbar
+        panelConfig="left" // If your page is only using one panel, define it here with "left" or "right". Removing this defaults to both.
+        isPanelOpen={isPanelOpen}
+        togglePanel={togglePanel}
+        isRightPanelOpen={isRightPanelOpen}
+        toggleRightPanel={toggleRightPanel}
+        commandKey={commandKey}
+      >
+        <Toolbar></Toolbar>
         <Toolbar>
-          <Menu>
-            <MenuTrigger>
-              <ToolbarButton
-                aria-label="More"
-                icon={<MoreHorizontalRegular />}
-              />
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList>
-                <MenuItem>New </MenuItem>
-                <MenuItem>New Window</MenuItem>
-                <MenuItem disabled>Open File</MenuItem>
-                <MenuItem>Open Folder</MenuItem>
-              </MenuList>
-            </MenuPopover>
-          </Menu>
+          <ToolbarButton icon={<Link />}></ToolbarButton>
         </Toolbar>
-      </div>
+      </ContentToolbar>
 
       {/*📌 Below is the setup for Content.
        ***You can import just about anything into className"content" and it should show up in the content panel
@@ -102,12 +85,12 @@ yarn start
                   width="32"
                   height="32"
                 />
-                <p>Fork this repository to create your copy.</p>
+                <p>Fork Coral from GitHub.</p>
                 <a
                   href="https://github.com/mochimilk/cto_eden/fork"
                   target="_blank"
                 >
-                  <Button appearance="primary">Fork from GitHub</Button>
+                  <Button appearance="primary">Fork</Button>
                 </a>
               </div>
             </p>
@@ -120,8 +103,14 @@ yarn start
             <li>
               <h3>Install dependencies</h3>
               <p>
-                Make sure you have <a href="">Node.js</a> and npm or yarn
-                installed. Then, run:
+                Make sure you have
+           
+                  <a href="https://nodejs.org/en" target="_blank">
+                    Node.js
+                  </a>
+           
+      
+                and npm or yarn installed. Then, run:
               </p>
               <CodeBlock code={sampleDependencies.trim()} />
             </li>

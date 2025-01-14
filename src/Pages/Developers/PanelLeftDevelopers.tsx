@@ -18,9 +18,11 @@ import {
   PersonChat20Filled,
   Settings20Regular,
   Settings20Filled,
+  Code16Regular,
+  Code20Regular,
+  Code20Filled,
 } from "@fluentui/react-icons";
-import "./css/Chat.css";
-import LeftNavItem from "../Components/LeftNavItem.tsx";
+import "../../Modules/Panels/Chat.css";
 import { NavLink } from "react-router-dom";
 
 // Explicitly defines types and annotates destructured parameters to prevent TypeScript errors
@@ -36,7 +38,7 @@ interface NavSection {
   items: NavItem[];
 }
 
-// NAVLINK NAV ITEMS
+// NavLink Nav Items
 const navSections = [
   {
     sectionTitle: null,
@@ -47,6 +49,7 @@ const navSections = [
         filledIcon: Settings20Filled,
         label: "Installation",
       },
+
     ],
   },
   {
@@ -89,12 +92,17 @@ const navSections = [
         to: "/developers/themes",
         label: "Themes",
       },
-
     ],
   },
   {
     sectionTitle: "Explore",
     items: [
+      {
+        to: "/developers/devmode",
+        regularIcon: Code20Regular,
+        filledIcon: Code20Filled,
+        label: "Dev Mode",
+      },
       {
         to: "/developers/labs",
         regularIcon: Beaker20Regular,
@@ -110,12 +118,6 @@ const navSections = [
     ],
   },
 ];
-
-
-
-
-
-
 
 const PanelLeft: React.FC = () => {
   return (
@@ -182,8 +184,6 @@ const PanelLeft: React.FC = () => {
             </div>
           ))}
         </nav>
-
-
       </div>
 
       <div

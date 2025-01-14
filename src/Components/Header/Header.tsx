@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Header, useHeaderHooks } from "../Hooks/useHeaderHooks.tsx";
+import { Header, useHeaderHooks } from "../../Hooks/useHeaderHooks.tsx";
 import {
   TabList,
   Tab,
@@ -16,8 +16,6 @@ import {
   Button,
 } from "@fluentui/react-components";
 import {
-  LeafOne,
-  Beaker,
   Flow,
   WeatherSunny,
   WeatherMoon,
@@ -27,14 +25,35 @@ import {
   Share,
   Code,
   DesignIdeas,
-} from "../bundleIcons.tsx";
-import MsftLogo from "../Imports/MsftColor.svg";
-import "./css/Header.css";
+} from "../../Imports/bundleIcons.tsx";
+import MsftLogo from "../../Imports/MsftColor.svg";
+import "./Header.css";
+
 
 interface HeaderPageProps {
   toggleTheme: () => void;
   isDarkMode: boolean;
 }
+
+const tabConfigs = [
+  {
+    icon: <Code />, // Add new Fluent icons in bundleIcons.tsx, then import
+    value: "developers", // Route path defined in App.tsx
+    label: "Developers", // Visible label on UI
+  },
+  {
+    icon: <DesignIdeas />,
+    value: "designers",
+    label: "Designers",
+  },
+  {
+    icon: <Flow />,
+    value: "productManagers",
+    label: "Product Managers",
+  },
+];
+
+
 
 const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
   const { shortcutLabel } = useHeaderHooks({ toggleTheme, isDarkMode });
@@ -53,7 +72,7 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
   const currentTab =
     Object.keys(tabRoutes).find((route) =>
       location.pathname.startsWith(route)
-    ) || "/home"; // Default to "designers"
+    ) || "/home"; // Default to "home"
 
   const handleTabChange = (
     _: React.SyntheticEvent,
@@ -77,6 +96,7 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
       subtitle="CTO Coral" // Optional subtitle
       badge="Docs" // Optional badge
     >
+      
       <div className="headerNav">
         <TabList
           selectedValue={tabRoutes[currentTab]}
@@ -84,18 +104,13 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
           aria-label="Site Navigation Tabs"
           size="small"
         >
-          <Tab icon={<LeafOne />} value="home">
-            Hello
-          </Tab>
-          <Tab icon={<Code />} value="developers">
-            Developers
-          </Tab>
-          <Tab icon={<DesignIdeas />} value="designers">
-            Designers
-          </Tab>
-          <Tab icon={<Flow />} value="productManagers">
-            Product Managers
-          </Tab>
+
+      {tabConfigs.map(({ icon, value, label }) => (
+        <Tab key={value} icon={icon} value={value}>
+          {label}
+        </Tab>
+      ))}
+
         </TabList>
       </div>
 
