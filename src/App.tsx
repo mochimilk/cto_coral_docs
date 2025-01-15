@@ -6,7 +6,7 @@ import "./Modules/Panels/Panels.css";
 import "./Modules/Content/Content.css"
 import HomePage from "./Pages/HomePage.tsx";
 import DevelopersPage from "./Pages/Developers/DevelopersPage.tsx";
-import DesignersPage from "./Pages/DesignersPage.tsx";
+import DesignersPage from "./Pages/Designers/DesignersPage.tsx";
 import ProductManagersPage from "./Pages/ProductManagersPage.tsx";
 import NotFound from "./Pages/NotFound.tsx";
 import {

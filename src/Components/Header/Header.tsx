@@ -29,7 +29,6 @@ import {
 import MsftLogo from "../../Imports/MsftColor.svg";
 import "./Header.css";
 
-
 interface HeaderPageProps {
   toggleTheme: () => void;
   isDarkMode: boolean;
@@ -53,8 +52,6 @@ const tabConfigs = [
   // },
 ];
 
-
-
 const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
   const { shortcutLabel } = useHeaderHooks({ toggleTheme, isDarkMode });
   const navigate = useNavigate();
@@ -74,20 +71,24 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
       location.pathname.startsWith(route)
     ) || "/home"; // Default to "home"
 
-  const handleTabChange = (
-    _: React.SyntheticEvent,
-    data: { value: TabValue }
-  ) => {
-    const newRoute = Object.keys(tabRoutes).find(
-      (key) => tabRoutes[key] === data.value
-    );
-    if (newRoute) {
-      // Redirect "Developers" to its default nested route
-      navigate(
-        newRoute === "/developers" ? "/developers/installation" : newRoute
+    const handleTabChange = (
+      _: React.SyntheticEvent,
+      data: { value: TabValue }
+    ) => {
+      const newRoute = Object.keys(tabRoutes).find(
+        (key) => tabRoutes[key] === data.value
       );
-    }
-  };
+      if (newRoute) {
+        // Redirect "Developers" and "Designers" to their default nested routes
+        navigate(
+          newRoute === "/developers"
+            ? "/developers/installation"
+            : newRoute === "/designers"
+            ? "/designers/getting-started"
+            : newRoute
+        );
+      }
+    };
 
   return (
     <Header
@@ -96,7 +97,6 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
       subtitle="CTO Coral" // Optional subtitle
       badge="Docs" // Optional badge
     >
-      
       <div className="headerNav">
         <TabList
           selectedValue={tabRoutes[currentTab]}
@@ -104,13 +104,11 @@ const HeaderPage: React.FC<HeaderPageProps> = ({ toggleTheme, isDarkMode }) => {
           aria-label="Site Navigation Tabs"
           size="small"
         >
-
-      {tabConfigs.map(({ icon, value, label }) => (
-        <Tab key={value} icon={icon} value={value}>
-          {label}
-        </Tab>
-      ))}
-
+          {tabConfigs.map(({ icon, value, label }) => (
+            <Tab key={value} icon={icon} value={value}>
+              {label}
+            </Tab>
+          ))}
         </TabList>
       </div>
 

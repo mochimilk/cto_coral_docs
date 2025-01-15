@@ -62,3 +62,10 @@ code.span {
     fill: var(--colorNeutralForeground2);
  } */
 
+
+  svg .svgIconPath {
+ stroke: var(--colorNeutralForeground2);
+}
+
+
+ 
