@@ -77,77 +77,7 @@ yarn start
 
         <div style={{ width: "100%", maxWidth: "728px", margin: " 0 auto" }}>
           <h1>Layouts</h1>
-          <ol>
-          <li>
-          <h3>Turn on Libraries</h3>
-          <p>
-            In your next project, open the assets panel in Figma and enable these four libraries:{" "}
-          </p>
-       <div className="personaField">
-            <div className="personaContainer">
-              <div className="personaButton">
-                <img src=""/>
-                <div style={{width: '100%'}}>
-                  <Body1Strong>Fluent 2 design language</Body1Strong>
-                  <br />
-                  <Caption1 style={{ color: "var(--colorNeutralForeground4" }}>
-                    <span >
-                      Fluent dropshadows
-                    </span>{" "}
 
-                  </Caption1>
-                </div>
-                <Link20Regular/>
-                
-              </div>
-
-              <div className="personaButton">
-                <img src=""/>
-                <div>
-                  <Body1Strong>Fluent 2 web</Body1Strong>
-                  <br />
-                  <Caption1 style={{ color: "var(--colorNeutralForeground4" }}>
-                    <span >
-                      Fluent web components
-                    </span>{" "}
-
-                  </Caption1>
-                </div>
-              </div>
-
-
-              <div className="personaButton">
-                <img src=""/>
-                <div>
-                  <Body1Strong>Fluent iconography</Body1Strong>
-                  <br />
-                  <Caption1 style={{ color: "var(--colorNeutralForeground4" }}>
-                    <span >
-                      Fluent icon catalog
-                    </span>{" "}
-
-                  </Caption1>
-                </div>
-              </div>
-
-              <div className="personaButton">
-                <img src=""/>
-                <div>
-                  <Body1Strong>Fluent Web Variables</Body1Strong>
-                  <br />
-                  <Caption1 style={{ color: "var(--colorNeutralForeground4" }}>
-                    <span >
-                      Colors, type, gaps, etc.
-                    </span>{" "}
-
-                  </Caption1>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          </li>
-        </ol>
         </div>
       </div>
     </div>

@@ -334,7 +334,7 @@ const ContentDevelopers: React.FC<ContentProps> = ({
             />
             <p>Get a full list of components at react.fluentui.dev</p>
             <a
-              href="https://github.com/mochimilk/cto_eden/fork"
+              href="https://react.fluentui.dev/?path=/docs/concepts-introduction--docs"
               target="_blank"
             >
               <Button appearance="primary">Visit Fluent 2</Button>

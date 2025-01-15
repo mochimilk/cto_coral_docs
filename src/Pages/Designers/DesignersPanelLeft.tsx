@@ -64,30 +64,11 @@ const navSections = [
  
     ],
   },
-  {
-    sectionTitle: "Advanced Configurations",
-    items: [
-      {
-        to: "/developers/page-navigation",
-        label: "Page Navigation",
-      },
-    ],
-  },
+
   {
     sectionTitle: "Explore",
     items: [
-      {
-        to: "/developers/devmode",
-        regularIcon: Code20Regular,
-        filledIcon: Code20Filled,
-        label: "Dev Mode",
-      },
-      {
-        to: "/developers/labs",
-        regularIcon: Beaker20Regular,
-        filledIcon: Beaker20Filled,
-        label: "Labs",
-      },
+
       {
         to: "/developers/support",
         regularIcon: PersonChat20Regular,

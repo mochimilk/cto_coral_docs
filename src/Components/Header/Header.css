@@ -5,7 +5,7 @@ header {
   gap: 16px;
   justify-content: space-between;
   background-color: var(--colorNeutralBackgroundAlpha);
-  max-height: 64px;
+  max-height: 56px;
   box-sizing: border-box;
   border-bottom: 1px solid var(--colorNeutralStroke2);
 }
